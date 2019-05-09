@@ -274,7 +274,7 @@ const gameState = {
 const config = {
   type: Phaser.AUTO,
   width: 1200,
-  height: 600,
+  height: 675,
   fps: {target: 60},
   backgroundColor: "b9eaff",
   physics: {
