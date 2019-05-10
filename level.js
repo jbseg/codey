@@ -20,11 +20,25 @@ class Level extends Phaser.Scene {
     this.load.image('bg1', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Codey+Tundra/mountain.png');
     this.load.image('bg2', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Codey+Tundra/trees.png');
     this.load.image('bg3', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Codey+Tundra/snowdunes.png');
+
+    this.load.audio('jump', '/sounds/jump.wav');
+    this.load.audio('next_stage', '/sounds/next_stage.wav');
+    this.load.audio('crash', '/sounds/crash.wav');
+    this.load_theme_music();
   }
 
   create() {
-
-    gameState.active = true
+    // this.input.addDownCallback(function() {
+    //
+		// 		if (game.sound.context.state === 'suspended') {
+		// 			game.sound.context.resume();
+		// 		}
+		// });
+    if (game.sound.context.state === 'suspended') {
+      game.sound.context.resume();
+    }
+    this.play_theme_music();
+    gameState.active = true;
 
     gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
     this.createStars();
@@ -159,6 +173,7 @@ class Level extends Phaser.Scene {
         if (progress > .9) {
           this.scene.stop(this.levelKey);
           this.scene.start(this.nextLevel[this.levelKey]);
+          gameState.music.pause();
         }
       });
     }, null, this);

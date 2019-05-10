@@ -17,7 +17,10 @@ const config = {
 
     }
   },
-  scene: [Level1, Level2, Level3, Level4, Credits]
+  scene: [Level1, Level2, Level3, Level4,Credits],
+  // audio: {
+  //       disableWebAudio: true
+  //   }
 };
 
 const game = new Phaser.Game(config);
